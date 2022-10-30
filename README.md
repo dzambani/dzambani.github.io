@@ -1,6 +1,7 @@
 # dzambani.github.io
 
 Goal:
+	
 	Smart homes are essential conveniences for consumers who want to make their lives just a little bit easier. At the forefront of these advancing technologies are smart assistants. This project aims to advance smart assistant functionality in noisy environments, such as a kitchen, and be able to help further ease a consumer’s life by identifying/classifying differing sounds while managing useful events for each noise identified.
 
 Initial Aims:
