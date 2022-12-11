@@ -23,6 +23,7 @@ Running Classify:
 	3) Install Dependencies: cv2, configparser, numpy, subprocess, re
 	4) Run classify.py
 	** If any dependancies are missing, install as dependencies come up in terminal**
+	**All code paths are absolute paths, make sure you update paths according to your own directories accordingly**
 	
 Running ODAS (must be run in parallel with Classify for Spatial Filtering):
 	
