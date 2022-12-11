@@ -143,12 +143,14 @@
              </h3>
             <p>
               Now, we combine the results of both the models and predict the appliance which is detected to be turned on. We take actions based on the events that we detect and they are mentioned as follows:
-Food Chopping - Start playing music when food chopping detected & stop when it stops
-Fire Alarm - Send a notification message to the user about the fire alarm in the kitchen
-Fire - When fire is detected, simulate a fire alarm and send message to the user
-Water Faucet/Sink - If water running for a long time and person is detected, play music
-Microwave / Oven - Send a notification message to the user informing the food is ready
-Blender - Send a notification message to the user if blender is turned on for a specified time
+		    <ul>
+<li>Food Chopping - Start playing music when food chopping detected & stop when it stops</li>
+<li>Fire Alarm - Send a notification message to the user about the fire alarm in the kitchen</li>
+<li>Fire - When fire is detected, simulate a fire alarm and send message to the user</li>
+<li>Water Faucet/Sink - If water running for a long time and person is detected, play music</li>
+<li>Microwave / Oven - Send a notification message to the user informing the food is ready</li>
+<li>Blender - Send a notification message to the user if blender is turned on for a specified time</li>
+			    </ul>
               </p>
             <h4>
              AWS Integration
@@ -161,8 +163,10 @@ Blender - Send a notification message to the user if blender is turned on for a 
              </h3>
             <p>
              The results of the project could be broken down into two main objectives:
-1. Proper filtering and isolation of two sound sources.
-2. Proper implementation of events and classifications.
+		    <ul>
+<li>Proper filtering and isolation of two sound sources.</li>
+<li>Proper implementation of events and classifications.</li>
+			    </ul>
             </p>
             <h4>
              Proper Filtering and Isolation
@@ -176,10 +180,12 @@ Blender - Send a notification message to the user if blender is turned on for a 
              </h4>
             <p>
               For implementing the events and classification, we used the following technical concepts:
-1. Run multiple process in parallel: For playing music, we start a child process that runs music in parallel to the main program of appliance detection and kills the process based on certain conditions
-2. Sending notification to the user: We use Twilio Rest APIs that help send a message to the user based on detection of certain events
-3. Hysteresis: To make sure that appliance is detected actually, we implement a counter that waits on the continuous appliance detection for some time to actually implement an event-based action.
-            </p>
+		    <ul>
+<li>Run multiple process in parallel: For playing music, we start a child process that runs music in parallel to the main program of appliance detection and kills the process based on certain conditions</li>
+<li>Sending notification to the user: We use Twilio Rest APIs that help send a message to the user based on detection of certain events</li>
+<li>Hysteresis: To make sure that appliance is detected actually, we implement a counter that waits on the continuous appliance detection for some time to actually implement an event-based action</li>
+            </ul>
+			    </p>
             <h3>
              Challenges Faced and Future Improvements
              </h3>
@@ -188,11 +194,15 @@ Blender - Send a notification message to the user if blender is turned on for a 
 		    <br>
 Improvements 1: Fix calibration of single camera, implement stereo camera, calculate XYZ coordinates and accurate relative angles using stereo camera.
 		    <br>
+	</p>
+		  <p>
 
 Challenge 2: Hardware limitations in spatial filtering
 		    <br>
 Improvements 2: Can further improve the limitations of hardware by classifying the expected energy levels and behavior of the appliances as opposed to just noise and filtering.
 		    <br>
+		</p>
+		  <p>
 
 Challenge 3: Hardware limitations in microphone array.
 		    <br>
