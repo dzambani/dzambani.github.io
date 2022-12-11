@@ -15,7 +15,10 @@ STRETCH GOAL: Use a camera to help identify objects inside of the scene as well.
 STRETCH GOAL: Send appliance ‘stats’ to the user. I.E: Potential Power Draw, Time On, Etc.
 
 Demo: https://youtu.be/WgL5V4ro6xw
+
 Website: https://dzambani.github.io/
+
+Slides: https://docs.google.com/presentation/d/1yXnFNDSeWL2niNqHd_K6t5rsABcprtct-aG7LiSaClQ/edit?usp=sharing
 
 RUNNING CODE:
 	
