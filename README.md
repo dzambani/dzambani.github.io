@@ -62,6 +62,7 @@ Running ODAS (must be run in parallel with Classify for Spatial Filtering):
 			***Where myConfigFile is respeaker_usb_4_mic_array.cfg. Notice how it is in the same directory as the odaslive file. The odaslive file will be in PATH/odas/build/bin/live. If you do not want them in the same directory just make sure the paths match up when calling odaslive.***
 			
 AWS integration setup: 
+
 	1) Create a DynamoDB database 
 	2) Create a Lambda function (lambda folder) 
 	3) Create an HTTP API Gateway and configure routes to Lambda function 
