@@ -110,6 +110,120 @@
             <p>
               The implemented camera has a certain horizontal and vertical FOV. By calculating the distance of an object centroid away from the x & y center of the camera and multiplying that by the FOV we can get a certain pixel-to-degree ratio, giving us relative angles of all our stationary objects. This can be used to later calibrate the spatial filters.
              </p>
+            <h4>
+             Microphone Array and Spatial Filters
+             </h4>
+            <p>
+              The algorithm behind this module can be seen as follows:
+              </p>
+            <h4>
+             Spatial Filter Initialization
+             </h4>
+            <p>
+             The spatial filter was handled by ODAS, which allows the configuration of the ReSpeaker Microphone Array. With each static appliance angle found, as the person approached and interacted with the object of interest, a spatial filter configuration file can be called with ODAS in parallel with the original program. A spatial filter can be configured as followed:
+              </p>
+            <p>
+              This configuration was used to develop the filter for our demonstration. Where the relative angle of the sink lies between this upper and lower boundary within the transition of the gain. 
+            </p>
+            <p>
+              The second figure describes the behavior of the filter, although most appliances in the environment behaved within the x-axis.
+              </p>
+            <h4>
+             Generator and Module Outputs
+             </h4>
+            <p>
+              A line generator had to be created to isolate ODAS outputs and receive the activity level in the direction of the appliance. This activity level was used as a threshold within the main code to confirm that there was, in fact, noise within the realm of the detect appliance. This was in conjunction with the closeness thresholds established earlier. If the activity level threshold was met (during filtering) and the closeness threshold were established, a certain probability increase could be sent to the audio classification module for a certain time x. This probability increase will only be affecting the likelihood of an event for our smart home assistant, not the audio classification.
+              </p>
+            <h3>
+             Events
+             </h3>
+            <p>
+              Now, we combine the results of both the models and predict the appliance which is detected to be turned on. We take actions based on the events that we detect and they are mentioned as follows:
+Food Chopping - Start playing music when food chopping detected & stop when it stops
+Fire Alarm - Send a notification message to the user about the fire alarm in the kitchen
+Fire - When fire is detected, simulate a fire alarm and send message to the user
+Water Faucet/Sink - If water running for a long time and person is detected, play music
+Microwave / Oven - Send a notification message to the user informing the food is ready
+Blender - Send a notification message to the user if blender is turned on for a specified time
+              </p>
+            <h4>
+             AWS Integration
+             </h4>
+            <p>
+             To create a flow for data to a potential user interface, we added AWS serverless integration by leveraging FaaS computing. We were able to set up a DynamoDB database to store appliances and their statuses, create a Lambda function to handle read and write operations to the database, and open an HTTP API Gateway to call POST, GET, and DELETE functions to the Lambda function at the appropriate routes. We update the database when appliances are detected with a status that indicates they are running and we update the database when appliances stop running with a corresponding status. On our project website we have put a link which executes a GET request, and we are able to see the values of the appliances in the database. For the future we hope to create a full user interface for our home appliance detection system. 
+            </p>
+            <h3>
+             Results
+             </h3>
+            <p>
+             The results of the project could be broken down into two main objectives:
+1. Proper filtering and isolation of two sound sources.
+2. Proper implementation of events and classifications.
+            </p>
+            <h4>
+             Proper Filtering and Isolation
+             </h4>
+            <p>
+             Proper isolation and filtering were tested and validated in the demonstration/video for this project. The results were both successful and unsuccessful. By applying spatial filters based on the relative angles, the blender noise was completely masked. Additionally, the fauces/sink noise alone was more clear with an activity level of almost magnitude 1 compared to .6 with a dynamic filter. By applying the filter with two sources at once, the results were less successful. Proper filtering was still applied based on the closeness to the appliance. However, it seemed that whether a source was continuously detected was dependent on which source was turned on first. This was identified as a possible issue the way both the Respeaker and ODAS determine what is ‘white noise’ and would automatically stop detecting one within their own proper algorithms.
+	The use of video in conjunction with audio provided very useful input to the filter and events. Cameras could provide very useful information to improve the experience with smart assistants and the way they define the interaction with our environment. However, of course, privacy concerns still exist with appliances that use visuals. Products like Roomba face controversies over such implementations so, without larger jumps in performance, privacy concerns may triumph over their implementations.
+            </p>
+            <h4>
+             Implementation of Events and Classifications
+             </h4>
+            <p>
+              For implementing the events and classification, we used the following technical concepts:
+1. Run multiple process in parallel: For playing music, we start a child process that runs music in parallel to the main program of appliance detection and kills the process based on certain conditions
+2. Sending notification to the user: We use Twilio Rest APIs that help send a message to the user based on detection of certain events
+3. Hysteresis: To make sure that appliance is detected actually, we implement a counter that waits on the continuous appliance detection for some time to actually implement an event-based action.
+            </p>
+            <h3>
+             Challenges Faced and Future Improvements
+             </h3>
+            <p>
+              Challenge 1: Proper Relative Angles and XYZ coordinates
+Improvements 1: Fix calibration of single camera, implement stereo camera, calculate XYZ coordinates and accurate relative angles using stereo camera.
+
+Challenge 2: Hardware limitations in spatial filtering
+Improvements 2: Can further improve the limitations of hardware by classifying the expected energy levels and behavior of the appliances as opposed to just noise and filtering.
+
+Challenge 3: Hardware limitations in microphone array.
+Improvements 3: An interesting improvement would be to focus on running the beamforming and filtering (possibly more) directly on a microphone array system and using a larger embedded system (like the raspberry pi) for more computationally intensive tasks. This could either increase performance or lead to a reduction in size for the system.
+
+            </p>
+            <h3>
+              Contributions
+            </h3>
+            <p>
+              Bhanu  
+1. Survey of literature related to various detection models
+2. Running various models on Raspberry to compare the performance
+3. Integration of audio detection model 
+4. Implementation of triggered Twilio events
+5. Implementation of running multiple processes in parallel
+
+            </p>
+            <p>
+              Nathan 
+1. Survey of literature related to various detection models
+2. Integration of ODAS/ODASWEB
+3. Integration of object detection model 
+4. Implementation of spatial filtering with object detection 
+
+            </p>
+            <p>
+              Disha 
+1. Design and implementation of the GitHub Website 
+2. Survey of literature related to localization and hardware considerations 
+3. Integration of ODAS/ODASWEB
+4. Implementation of spatial filtering with object detection 
+5. Development and integration of AWS API Gateway, Lambda, and DynamoDB Suite
+
+            </p>
+            <h3>
+              References
+              </h3>
+            <p>
+              </p>
           </div>
           
           <div id="contact" class="content-region hide">
