@@ -43,17 +43,84 @@
           
           <div id="home" class="content-region hide">
             <h2>Home</h2>
-            <p>
-              Insert content from ReadME here. 
-            </p>
             <a href="https://3i859s5gi8.execute-api.us-west-1.amazonaws.com/items">See which appliances are running!</a>
+            <h3>
+              Introduction
+             </h3>
+            <p>
+              Smart assistants and smart homes are increasing in popularity as they gain more functionality and more product support. A major attraction to these smart assistants lies in how “smart” they are (i.e features) and how well they perform. Our main goal was based on these two attractions: How can we improve the method in which we handle noise/audio instances to get more functionality (features) out of the smart assistant world? In this experiment, we explore a fusion of sensors, classification models, and microphone array filters to try and better isolate/filter sounds to improve both performance and functionalities. We introduce a visual component along with audio classification to further improve appliance detection results and compare the implementation with only audio classification with our improved implementation. 
+            </p>
+            <h3>
+             Related Work
+             </h3>
+            <p>
+              todo
+            </p>
+            <h3>
+            High Level Approach
+             </h3>
+            <p>
+              image
+            </p>
+            <h3>
+             System Inputs/Equipment
+             </h3>
+            <p>
+              For our system we chose to incorporate both visual and audio inputs from the surrounding environment via an external Raspberry Pi V2 Camera and ReSpeaker Microphone Array USB respectively. We decided that running our system on a Raspberry Pi 4 would be useful for portability, a powerful CPU, and an abundance of documentation. An even more vital reason was its easy integration with a Google Coral TPU for latency reduction on the audio and visual detection model we ran on our system. This, of course, depends on the size of the models, parameters, type of model and classifications, etc. However, we would not have to worry about this issue by implementing a Google Coral TPU. We would then be able to accelerate the heavier model (object classification) on the TPU while running the lighter model (audio classification) without the acceleration of the TPU. 
+            </p>
+            <h3>
+             Audio Classification
+             </h3>
+            <h4>
+              Tensorflow Lite Pre-Trained Model
+              </h4>
+            <p>
+              We are using a Tensorflow Lite Pre-Trained Model for our audio classification. The advantage of using this model over other models that we tried are the relative size and the processing power needed. Compared to the other model that we tried using which is given below, this model uses 1/7th computation power. This model is trained on 521 audio events from the AudioSet. One biggest benefit of using this model is that it makes independent predictions for each of 521 audio events from the AudioSet. Using this idea, we implement normalization on top of this model to detect a subset of sounds corresponding to our appliances and extract the events of our interest.
+            </p>
+            <h4>
+             Normalization
+             </h4>
+            <p>
+              We get the confidence levels of each of our appliances of interest and normalize them, so that we can obtain their confidence levels independent of the other audio sounds which are outside the scope of our interest. 
+            </p>
+            <h3>
+             Object Detection
+             </h3>
+            <p>
+              The object detection model was added to feed extra probabilities to the events/audio classification model due to the lack of flexibility mentioned in the audio classification model. The object detection had 3 intentions:
+            </p>
+            <h4>
+             Object Classification
+             </h4>
+            <p>
+              We can identify appliances and people within the scene to extract certain features we find people exhibit when cooking or interacting in the kitchen.
+            </p>
+            <h4>
+             Closeness Feature
+             </h4>
+            <p>
+              The main feature we wanted to receive from the environment and objects was if a human interacted with them in some way. To do so, the bounding boxes created by the object detection extracted the centroids then used the relative distance of centroids from person to object. The closeness from person to object was evaluated and incorporated into how probabilities added to the audio classification model.
+            </p>
+            <h4>
+             Relative Angles
+             </h4>
+            <p>
+              The main feature we wanted to extract from the object detection itself was relative angles to the camera. The following code shows the implemented equation:
+            </p>
+            <p>
+              The implemented camera has a certain horizontal and vertical FOV. By calculating the distance of an object centroid away from the x & y center of the camera and multiplying that by the FOV we can get a certain pixel-to-degree ratio, giving us relative angles of all our stationary objects. This can be used to later calibrate the spatial filters.
+             </p>
           </div>
           
           <div id="contact" class="content-region hide">
             <h2>Contact</h2>
             <p>
               Bhanu Chaudhary
+             </p>
+            <p>
               Nathan Portillo 
+             </p>
+            <p>
               Disha Zambani 
             </p>
           </div>
