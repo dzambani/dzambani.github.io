@@ -30,7 +30,38 @@ Running ODAS (must be run in parallel with Classify for Spatial Filtering):
 	1) Download and Install ODAS: https://github.com/introlab/odas/wiki
 	2) Download the configuration files 
 	3) Adjust Spatial Filtering based on variables from vid.py (uncomment print(angle_from_center))
-	4)Adjust configuration file of your objects based on relative angles
-	5)Confirm output of SSS: in tracked: is output to text file, not terminal
-	5)Run ODAS in parallel with classify.py
-	6)Running ODAS can be found here: https://github.com/introlab/odas/wiki
+	4) Adjust configuration file of your objects based on relative angles
+	5) Confirm output of SSS: in tracked: is output to text file, not terminal
+	5) Run ODAS in parallel with classify.py (separate terminals or refer to parallel.py)
+	6) Running ODAS can be found here: https://github.com/introlab/odas/wiki
+	- Running ODAS is tricky, here are our instructions: 
+		Install and build 
+			sudo apt-get install libfftw3-dev libconfig-dev libasound2-dev libgconf-2-4 libpulse-dev
+			sudo apt-get install cmake
+			cd ~/Desktop
+			git clone https://github.com/introlab/odas.git
+			mkdir odas/build
+			cd odas/build
+			cmake ..
+			make
+
+			***There might be some missing libraries, just sudo apt upgrade and update, sudo apt install them, sudo apt upgrade and update again, and build again.***
+
+		Configuration 
+			Feel free to look at this: https://github.com/introlab/odas/wiki/configuration 
+			But it works just by using the file in PATH/odas/config/odaslive/respeaker_usb_4_mic_array.cfg
+			Make sure you are reading from the socket, not a file:
+			interface: {
+            			type = "socket"; ip = "127.0.0.1"; port = 9004;
+            			type = "file"; path = "postfiltered.raw"; 
+        		};  
+
+		Running ODAS 
+			./odaslive -c myConfigFile.cfg
+
+			***Where myConfigFile is respeaker_usb_4_mic_array.cfg. Notice how it is in the same directory as the odaslive file. The odaslive file will be in PATH/odas/build/bin/live. If you do not want them in the same directory just make sure the paths match up when calling odaslive.***
+			
+AWS integration setup: 
+	1) Create a DynamoDB database 
+	2) Create a Lambda function (lambda folder) 
+	3) Create an HTTP API Gateway and configure routes to Lambda function 
