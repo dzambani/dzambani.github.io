@@ -97,7 +97,7 @@
             <p>
               We can identify appliances and people within the scene to extract certain features we find people exhibit when cooking or interacting in the kitchen.
             </p>
-		  <img src="./images/two.png" alt="object classification">
+		  <img src="./images/two.jpg" alt="object classification">
             <h4>
              Closeness Feature
              </h4>
@@ -120,15 +120,18 @@
             <p>
               The algorithm behind this module can be seen as follows:
               </p>
+		  <img src="./images/six.PNG" alt="spatial filter algorithm">
             <h4>
              Spatial Filter Initialization
              </h4>
             <p>
              The spatial filter was handled by ODAS, which allows the configuration of the ReSpeaker Microphone Array. With each static appliance angle found, as the person approached and interacted with the object of interest, a spatial filter configuration file can be called with ODAS in parallel with the original program. A spatial filter can be configured as followed:
               </p>
+		  <img src="./images/four.png" alt="spatial filter config">
             <p>
               This configuration was used to develop the filter for our demonstration. Where the relative angle of the sink lies between this upper and lower boundary within the transition of the gain. 
             </p>
+		   <img src="./images/five.png" alt="spatial filter behavior">
             <p>
               The second figure describes the behavior of the filter, although most appliances in the environment behaved within the x-axis.
               </p>
