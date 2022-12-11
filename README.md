@@ -20,6 +20,8 @@ Website: https://dzambani.github.io/
 
 Slides: https://docs.google.com/presentation/d/1yXnFNDSeWL2niNqHd_K6t5rsABcprtct-aG7LiSaClQ/edit?usp=sharing
 
+Project Proposal/Checkpoints Group Document: https://docs.google.com/document/d/10HaTjYyHpSiAY9tTNf4n954gSxCeEPFE5EudunRQ_aE/edit?usp=sharing
+
 RUNNING CODE:
 	
 	Equipment Needed: Raspberry Pi 4, ReSpeaker Microphone Array USB, Raspberry Pi Camera V2, Google Coral TPU
